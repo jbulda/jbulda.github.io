@@ -172,26 +172,3 @@ footer {
     transition: all 0.2s ease;
 }
 
-/* --- DOCK ITEMS --- */
-.dock-item {
-    color: var(--hero-body-text); /* Syncs with your theme's body text */
-    text-decoration: none;
-    font-family: 'Space Grotesk', sans-serif;
-    font-size: 0.85rem;
-    font-weight: 600;
-    padding: 8px 12px;
-    border-radius: 12px;
-    transition: all 0.2s ease;
-}
-
-.dock-item:hover {
-    color: #00ff41 !important;
-    background: rgba(0, 255, 65, 0.1);
-    transform: translateY(-2px);
-}
-
-.dock-item.active {
-    background: rgba(0, 255, 65, 0.15);
-    color: #00ff41 !important;
-    border: 1px solid rgba(0, 255, 65, 0.3);
-}

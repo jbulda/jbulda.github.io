@@ -117,9 +117,26 @@
             </div>
 
             <div class="skills-visual-container">
-                <div id="skill-radar" class="custom-control">
+                <div id="skill-radar" class="radar-wrapper">
+                    <svg width="400" height="400" viewBox="0 0 400 400" class="radar-chart">
+                        <g class="radar-grid">
+                            <circle cx="200" cy="200" r="150"></circle>
+                            <circle cx="200" cy="200" r="110"></circle>
+                            <circle cx="200" cy="200" r="70"></circle>
+                            <circle cx="200" cy="200" r="30"></circle>
+                        </g>
+
+                        <polygon class="skill-area" points="..."></polygon>
+
+                        <g class="nodes-layer">
+                            <circle class="skill-node" cx="..." cy="..." data-skill="ABAP RAP"
+                                data-desc="Expert in RESTful ABAP Programming and OData V4."></circle>
+                        </g>
+                    </svg>
                 </div>
+
                 <div id="skill-details" class="glass-panel">
+                    <h3>System Diagnostics</h3>
                     <p>Hover over a node to see detailed proficiency.</p>
                 </div>
             </div>

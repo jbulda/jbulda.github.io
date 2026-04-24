@@ -59,22 +59,24 @@ export class SkillRadar {
     addInteractivity() {
         this.container.querySelectorAll('.skill-node').forEach(node => {
             node.addEventListener('mouseenter', (e) => {
-                // We inject the H3 and P tags to match our new CSS
+                // Using theme variables for colors and matching your "System Diagnostics" aesthetic
                 this.details.innerHTML = `
                 <h3>${e.target.dataset.name}</h3>
-                <p>Expertise Level: <span style="color: #fff; font-weight: bold;">${e.target.dataset.level}</span></p>
-                <div class="progress-bar" style="margin-top: 15px;">
-                    <div class="progress" style="width: ${e.target.dataset.level}"></div>
+                <p>Proficiency Level: <span style="color: var(--hero-title-text); font-weight: bold;">${e.target.dataset.level}</span></p>
+                <div class="progress-bar" style="margin-top: 15px; background: rgba(255, 255, 255, 0.1);">
+                    <div class="progress" style="width: ${e.target.dataset.level}; background: var(--accent); box-shadow: 0 0 10px var(--accent);"></div>
                 </div>
             `;
-                // Subtle glow effect on the panel when active
-                this.details.style.borderColor = 'rgba(0, 255, 65, 0.5)';
-                this.details.style.boxShadow = '0 0 20px rgba(0, 255, 65, 0.1)';
+
+                // Subtle glow effect using your accent variable
+                this.details.style.borderColor = 'var(--accent)';
+                this.details.style.boxShadow = '0 0 20px var(--accent-glow)';
             });
 
             node.addEventListener('mouseleave', () => {
-                this.details.style.borderColor = 'rgba(0, 255, 65, 0.2)';
-                this.details.style.boxShadow = '0 10px 40px rgba(0, 0, 0, 0.6)';
+                // Revert to your standard "glass" border and shadow
+                this.details.style.borderColor = 'var(--hero-border)';
+                this.details.style.boxShadow = '0 10px 40px rgba(0, 0, 0, 0.3)';
             });
         });
     }

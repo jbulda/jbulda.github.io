@@ -75,3 +75,46 @@ window.addEventListener('resize', () => {
 
 init();
 animate();
+
+// Example logic to handle the active state
+const dockItems = document.querySelectorAll('.dock-item');
+
+dockItems.forEach(item => {
+    item.addEventListener('click', function() {
+        // 1. Remove active class from all items
+        dockItems.forEach(i => i.classList.remove('active'));
+        
+        // 2. Add active class to the clicked item
+        this.classList.add('active');
+    });
+});
+
+const observerOptions = {
+    root: null,
+    rootMargin: '-25% 0px -65% 0px', // Triggers when section occupies the middle of the screen
+    threshold: 0.1
+};
+
+const observer = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+        if (entry.isIntersecting) {
+            const id = entry.target.getAttribute('id');
+            
+            // Remove active from all
+            document.querySelectorAll('.dock-item').forEach(item => {
+                item.classList.remove('active');
+            });
+
+            // Add active to the one matching the current section ID
+            const activeItem = document.querySelector(`.dock-item[href="#${id}"]`);
+            if (activeItem) {
+                activeItem.classList.add('active');
+            }
+        }
+    });
+}, observerOptions);
+
+// Track all sections
+document.querySelectorAll('section').forEach(section => {
+    observer.observe(section);
+});

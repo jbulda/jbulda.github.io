@@ -62,23 +62,27 @@
     font-weight: bold;
 }
 
-.skill-category, .impact-card {
+.skill-category,
+.impact-card {
     background: var(--surface);
     padding: 35px;
     border-radius: 16px;
-    border: 1px solid rgba(255, 255, 255, 0.05); /* Subtle border */
+    border: 1px solid rgba(255, 255, 255, 0.05);
+    /* Subtle border */
     box-shadow: 0 4px 20px rgba(0, 0, 0, 0.5);
     transition: all 0.3s ease;
 }
 
-.skill-category:hover, .impact-card:hover {
+.skill-category:hover,
+.impact-card:hover {
     border-color: var(--accent);
     box-shadow: 0 0 15px rgba(0, 255, 65, 0.1);
     transform: translateY(-5px);
 }
 
 /* Title Legibility */
-.skill-category h3, .impact-card h3 {
+.skill-category h3,
+.impact-card h3 {
     color: var(--text-primary);
     font-weight: 700;
     letter-spacing: 0.5px;
@@ -86,16 +90,20 @@
 }
 
 /* Body Text Legibility */
-.skill-list li, .impact-card p {
-    color: var(--text-secondary); /* Less "vibrant" than white, easier to read */
+.skill-list li,
+.impact-card p {
+    color: var(--text-secondary);
+    /* Less "vibrant" than white, easier to read */
     font-size: 0.95rem;
     line-height: 1.6;
-    opacity: 1; /* Ensure it's not too faded */
+    opacity: 1;
+    /* Ensure it's not too faded */
 }
 
 .skill-list li::before {
     content: "•";
-    color: var(--accent); /* Only the bullet point glows */
+    color: var(--accent);
+    /* Only the bullet point glows */
     margin-right: 10px;
     font-weight: bold;
 }
@@ -104,14 +112,27 @@
 .impact-card {
     display: flex;
     flex-direction: column;
-    gap: 10px; /* Creates consistent breathing room between all elements */
+    gap: 15px;
+    margin-bottom: 20px;
+    /* Ensures space even if the container isn't a flexbox */
+
+    /* Existing Styles */
+    background: var(--hero-glass-bg);
+    padding: 35px;
+    border-radius: 24px;
+    border: 1px solid var(--hero-border);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+    transition: transform 0.3s ease, border-color 0.3s ease;
 }
 
 .client-tag {
     font-family: 'Space Grotesk', sans-serif;
     font-size: 0.7rem;
     font-weight: 800;
-    color: var(--accent); /* Glowing Green */
+    color: var(--accent);
+    /* Glowing Green */
     text-transform: uppercase;
     letter-spacing: 2px;
     margin-bottom: 5px;
@@ -119,26 +140,32 @@
     border: 1px solid rgba(0, 255, 65, 0.3);
     padding: 2px 8px;
     border-radius: 4px;
-    width: fit-content; /* Prevents the tag from stretching the full width */
+    width: fit-content;
+    /* Prevents the tag from stretching the full width */
 }
 
 .impact-card h3 {
-    margin-top: 0; /* Removes default browser spacing */
-    color: var(--text-primary); /* High-contrast Mint/White */
+    margin-top: 0;
+    /* Removes default browser spacing */
+    color: var(--text-primary);
+    /* High-contrast Mint/White */
     line-height: 1.2;
 }
 
 .impact-card p {
     margin-top: 10px;
-    color: var(--text-secondary); /* Phosphor Gray */
+    color: var(--text-secondary);
+    /* Phosphor Gray */
 }
 
 .impact-card-footer {
     margin-top: auto;
     padding-top: 20px;
     display: flex;
-    flex-wrap: wrap; /* Allows tags to wrap if the card is narrow */
-    gap: 10px;       /* Spacing between the spans */
+    flex-wrap: wrap;
+    /* Allows tags to wrap if the card is narrow */
+    gap: 10px;
+    /* Spacing between the spans */
     border-top: 1px solid rgba(255, 255, 255, 0.05);
 }
 
@@ -146,23 +173,28 @@
     font-family: 'Space Grotesk', sans-serif;
     font-size: 0.65rem;
     font-weight: 700;
-    color: var(--accent); /* Matrix Green */
-    background: rgba(0, 255, 65, 0.05); /* Very subtle green glow background */
+    color: var(--accent);
+    /* Matrix Green */
+    background: rgba(0, 255, 65, 0.05);
+    /* Very subtle green glow background */
     padding: 4px 10px;
     border-radius: 4px;
     border: 1px solid rgba(0, 255, 65, 0.2);
     text-transform: uppercase;
     letter-spacing: 1px;
-    white-space: nowrap; /* Prevents "Enterprise Deployment" from breaking into two lines */
+    white-space: nowrap;
+    /* Prevents "Enterprise Deployment" from breaking into two lines */
 }
 
 /* The main description paragraph */
 .impact-card p {
-    color: var(--text-secondary); /* Use the #9ca3af we discussed */
+    color: var(--text-secondary);
+    /* Use the #9ca3af we discussed */
     font-size: 0.95rem;
     line-height: 1.6;
     margin: 15px 0;
-    flex-grow: 1; /* Helps push the footer down */
+    flex-grow: 1;
+    /* Helps push the footer down */
 }
 
 .progress-bar {
@@ -187,42 +219,60 @@
     gap: 50px;
     margin: 60px 0;
     flex-wrap: wrap;
+    position: relative;
+    z-index: 1;
 }
 
 .radar-grid {
-    fill: none;
-    stroke: rgba(255, 255, 255, 0.1);
+    fill: rgba(255, 255, 255, 0.03); /* Very subtle fill for the rings */
+    stroke: rgba(255, 255, 255, 0.2); /* Brighter grid lines */
     stroke-width: 1;
 }
 
+.radar-wrapper {
+    background: rgba(0, 0, 0, 0.2);
+    padding: 20px;
+    border-radius: 50%;
+    backdrop-filter: blur(4px); /* Softly diffuses the background circuits */
+    border: 1px solid rgba(255, 255, 255, 0.05);
+}
+
 .skill-area {
-    fill: rgba(0, 255, 65, 0.15);
+    fill: var(--accent-glow); /* Uses the glow variable we created */
     stroke: var(--accent);
-    stroke-width: 2;
-    /* This adds a "glow" to the area itself */
-    filter: drop-shadow(0 0 10px rgba(0, 255, 65, 0.3));
+    stroke-width: 3; /* Thicker line for impact */
+    filter: drop-shadow(0 0 15px var(--accent)); /* Stronger neon glow */
+    transition: all 0.5s ease;
 }
 
 .skill-node:hover {
     r: 8;
-    fill: #fff; /* Turns white on hover for a "lit up" effect */
+    fill: var(--accent);
+    filter: drop-shadow(0 0 12px var(--accent));
 }
 
 .skill-node {
-    fill: #fff;
+    fill: #ffffff; /* Bright white center */
     stroke: var(--accent);
     stroke-width: 2;
+    r: 5;
     cursor: pointer;
-    transition: 0.2s;
+    transition: all 0.3s ease;
+    filter: drop-shadow(0 0 8px var(--accent));
 }
 
-.skill-node:hover { r: 7; fill: var(--accent); }
+.skill-node:hover {
+    r: 7;
+    fill: var(--accent);
+}
 
 .glass-panel {
-    background: var(--surface); /* Midnight Gray #121212 */
+    background: var(--surface);
+    /* Midnight Gray #121212 */
     padding: 30px;
     border-radius: 16px;
-    border: 1px solid rgba(0, 255, 65, 0.2); /* Subtle green border */
+    border: 1px solid rgba(0, 255, 65, 0.2);
+    /* Subtle green border */
     min-width: 260px;
     box-shadow: 0 10px 40px rgba(0, 0, 0, 0.6);
     backdrop-filter: blur(10px);
@@ -230,7 +280,8 @@
 }
 
 #skill-details h3 {
-    color: var(--accent); /* Matrix Green */
+    color: var(--accent);
+    /* Matrix Green */
     font-family: 'Space Grotesk', sans-serif;
     font-size: 1.4rem;
     margin-bottom: 10px;
@@ -245,35 +296,56 @@
 }
 
 /* Update/Replace the Dock Item section in css/components.css */
+/* components.css */
+
+/* --- 1. BASE DOCK ITEM --- */
 .dock-item {
     position: relative;
-    width: 48px;
-    height: 48px;
     display: flex;
     align-items: center;
     justify-content: center;
+    padding: 8px 12px;
+    border-radius: 12px;
     text-decoration: none;
-    border-radius: 14px;
-    transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    font-family: 'Space Grotesk', sans-serif;
+    font-size: 0.85rem;
+    font-weight: 600;
+    color: var(--hero-body-text); /* Theme-reactive base color */
     background: transparent;
-    color: var(--text);
+    transition: all 0.4s cubic-bezier(0.23, 1, 0.32, 1);
+    border: 1px solid transparent;
+    cursor: pointer;
 }
 
+/* --- 2. THE POWERED-ON HOVER (Matches Play Button) --- */
 .dock-item:hover {
     transform: scale(1.2) translateY(-10px);
-    background: var(--accent);
-    color: white !important;
+    background: #00ff41 !important; 
+    color: #000 !important; /* Sharp contrast on green */
+    box-shadow: 0 0 20px var(--accent-glow);
+    z-index: 10;
 }
 
-/* Tooltip implementation */
+/* --- 3. ACTIVE STATE --- */
+.dock-item.active {
+    background: var(--accent-glow) !important;
+    color: var(--accent) !important;
+    border: 1px solid var(--accent) !important;
+    box-shadow: 
+        inset 0 0 10px var(--accent-glow), 
+        0 0 15px var(--accent-glow);
+    transform: scale(1.1); /* Slight pop to show it's active */
+}
+
+/* --- 4. TOOLTIP (Kept from your current logic) --- */
 .dock-item::after {
     content: attr(data-label);
     position: absolute;
     top: -40px;
     left: 50%;
     transform: translateX(-50%) translateY(10px);
-    background: var(--text);
-    color: white;
+    background: var(--text-primary);
+    color: var(--bg);
     padding: 4px 10px;
     border-radius: 6px;
     font-size: 0.7rem;
@@ -288,13 +360,6 @@
     transform: translateX(-50%) translateY(0);
 }
 
-.dock-divider {
-    width: 1px;
-    height: 24px;
-    background: rgba(0, 0, 0, 0.1);
-    margin: 0 4px;
-}
-
 /* Update in css/components.css */
 .contact-links {
     display: flex;
@@ -303,7 +368,8 @@
     margin-top: 40px;
 }
 
-.contact-btn, .download-btn {
+.contact-btn,
+.download-btn {
     text-decoration: none;
     padding: 14px 30px;
     border-radius: 12px;
@@ -353,7 +419,7 @@
     padding: 0 15px;
     user-select: none;
     /* ADD THIS */
-    pointer-events: auto !important; 
+    pointer-events: auto !important;
 }
 
 .jumper-track {
@@ -372,7 +438,8 @@
 .pin {
     width: 4px;
     height: 4px;
-    background: #ffd700; /* Gold pins like a real PCB */
+    background: #ffd700;
+    /* Gold pins like a real PCB */
     border-radius: 50%;
     box-shadow: 0 0 5px rgba(255, 215, 0, 0.5);
 }
@@ -381,13 +448,16 @@
     position: absolute;
     width: 16px;
     height: 22px;
-    background: #222; /* Black plastic housing */
+    background: #222;
+    /* Black plastic housing */
     border: 1px solid #444;
     border-radius: 2px;
-    left: 2px; /* Position 1: Light Mode */
+    left: 2px;
+    /* Position 1: Light Mode */
     transition: transform 0.3s cubic-bezier(0.68, -0.55, 0.265, 1.55);
     z-index: 2;
-    transform: translateZ(0); /* Forces GPU layer */
+    transform: translateZ(0);
+    /* Forces GPU layer */
     transition: transform 0.1s cubic-bezier(0.4, 0, 0.2, 1);
 }
 

@@ -4,7 +4,9 @@
 :root {
     --bg: #f8fafc;
     --surface: #ffffff;
-    --accent: #00ff41;
+    --accent: #00c853; /* Brighter, more saturated emerald */
+    --accent-glow: rgba(0, 200, 83, 0.4);
+    --headline-accent: #00c853;
     --text-primary: #0f172a;
     --text-secondary: #475569;
     --glass-bg: rgba(255, 255, 255, 0.7);
