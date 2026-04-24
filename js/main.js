@@ -89,32 +89,43 @@ dockItems.forEach(item => {
     });
 });
 
+/* --- Navigation Scroll Spy with Bottom Detection --- */
 const observerOptions = {
     root: null,
-    rootMargin: '-25% 0px -65% 0px', // Triggers when section occupies the middle of the screen
-    threshold: 0.1
+    rootMargin: '-25% 0px -65% 0px', 
+    threshold: 0
 };
 
 const observer = new IntersectionObserver((entries) => {
-    entries.forEach(entry => {
-        if (entry.isIntersecting) {
-            const id = entry.target.getAttribute('id');
-            
-            // Remove active from all
-            document.querySelectorAll('.dock-item').forEach(item => {
-                item.classList.remove('active');
-            });
+    // Only run if we aren't at the very bottom of the page
+    const isAtBottom = (window.innerHeight + window.scrollY) >= document.body.offsetHeight - 10;
 
-            // Add active to the one matching the current section ID
-            const activeItem = document.querySelector(`.dock-item[href="#${id}"]`);
-            if (activeItem) {
-                activeItem.classList.add('active');
+    if (!isAtBottom) {
+        entries.forEach(entry => {
+            if (entry.isIntersecting) {
+                const id = entry.target.getAttribute('id');
+                updateActiveState(id);
             }
-        }
-    });
+        });
+    }
 }, observerOptions);
 
-// Track all sections
+// Function to update the dock state
+function updateActiveState(id) {
+    document.querySelectorAll('.dock-item').forEach(item => {
+        item.classList.remove('active');
+    });
+    const activeLink = document.querySelector(`.dock-item[href="#${id}"]`);
+    if (activeLink) activeLink.classList.add('active');
+}
+
+// Manual listener for the footer/bottom-out effect
+window.addEventListener('scroll', () => {
+    if ((window.innerHeight + window.scrollY) >= document.body.offsetHeight - 5) {
+        updateActiveState('contact'); // Replace 'contact' with your actual section ID
+    }
+});
+
 document.querySelectorAll('section').forEach(section => {
     observer.observe(section);
 });
