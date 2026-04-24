@@ -72,4 +72,6 @@ export class Trace {
             ctx.stroke();
         }
     }
+
+    
 }

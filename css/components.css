@@ -1,44 +1,4 @@
 /* Skill Matrix Grid */
-.play-btn {
-    /* Layout */
-    display: inline-block;
-    margin-top: 30px;
-    padding: 14px 28px;
-    
-    /* Aesthetics */
-    background: #ffffff;
-    color: var(--accent);
-    border: 1px solid var(--accent);
-    border-radius: 12px;
-    
-    /* Typography */
-    font-family: 'Space Grotesk', sans-serif;
-    font-weight: 600;
-    font-size: 0.9rem;
-    letter-spacing: 1px;
-    text-transform: uppercase;
-    
-    /* Interaction */
-    cursor: pointer;
-    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-    box-shadow: 0 4px 12px rgba(99, 102, 241, 0.1);
-    
-    /* Layering */
-    position: relative;
-    z-index: 100;
-}
-
-.play-btn:hover {
-    background: var(--accent);
-    color: #ffffff;
-    transform: translateY(-3px) scale(1.02);
-    box-shadow: 0 8px 20px rgba(99, 102, 241, 0.3);
-}
-
-.play-btn:active {
-    transform: translateY(-1px);
-}
-
 .skills-matrix {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
@@ -382,4 +342,77 @@
     font-size: 0.8rem;
     color: #94a3b8;
     letter-spacing: 1px;
+}
+
+.jumper-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 4px;
+    cursor: pointer;
+    padding: 0 15px;
+    user-select: none;
+    /* ADD THIS */
+    pointer-events: auto !important; 
+}
+
+.jumper-track {
+    position: relative;
+    width: 34px;
+    height: 18px;
+    background: rgba(0, 0, 0, 0.3);
+    border-radius: 4px;
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+    padding: 0 4px;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.pin {
+    width: 4px;
+    height: 4px;
+    background: #ffd700; /* Gold pins like a real PCB */
+    border-radius: 50%;
+    box-shadow: 0 0 5px rgba(255, 215, 0, 0.5);
+}
+
+.jumper-block {
+    position: absolute;
+    width: 16px;
+    height: 22px;
+    background: #222; /* Black plastic housing */
+    border: 1px solid #444;
+    border-radius: 2px;
+    left: 2px; /* Position 1: Light Mode */
+    transition: transform 0.3s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+    z-index: 2;
+    transform: translateZ(0); /* Forces GPU layer */
+    transition: transform 0.1s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+/* The "Contact" line on top of the jumper */
+.jumper-block::after {
+    content: "";
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 80%;
+    height: 2px;
+    background: var(--accent);
+    box-shadow: 0 0 8px var(--accent);
+}
+
+.jumper-label {
+    font-family: 'Space Grotesk', sans-serif;
+    font-size: 0.6rem;
+    font-weight: 700;
+    color: var(--text-secondary);
+    letter-spacing: 1px;
+}
+
+/* Jumper position for Dark Mode */
+[data-theme="dark"] #jumperBlock {
+    transform: translateX(14px);
 }

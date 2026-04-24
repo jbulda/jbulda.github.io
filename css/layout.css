@@ -1,97 +1,153 @@
-.hero {
-    background: #000000 !important; /* This must be pure black */
-    position: relative;
+#hero-canvas {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
     height: 100vh;
+    z-index: -1 !important; 
+    pointer-events: none;
+    display: block;
+}
+
+/* --- 2. HERO COMPONENT (THE POD) --- */
+.hero {
+    background: transparent !important;
+    position: relative;
+    overflow: hidden;
     display: flex;
     align-items: center;
     justify-content: center;
-    overflow: hidden;
-}
-
-#hero-canvas {
-    position: absolute;
-    top: 0;
-    left: 0;
-    z-index: 1; /* Level 1: Canvas sits just above the black background */
-    opacity: 0.4;
-    filter: none;
-    animation: canvasPulse 10s infinite alternate;
-}
-
-@keyframes canvasPulse {
-    0% { opacity: 0.6; }
-    100% { opacity: 0.9; }
-}
-
-.hero::before {
-    content: "";
-    position: absolute;
-    top: 0;
-    left: 0;
-    right: 0;
-    bottom: 0;
-    
-    /* THE FIX: Fade from TRANSPARENT in the center to BLACK on the edges */
-    background: radial-gradient(
-        circle, 
-        rgba(0, 0, 0, 0) 20%,    /* The center stays clear so the neon is bright */
-        rgba(0, 0, 0, 0.9) 100%  /* The edges fade to deep black */
-    );
-    
-    z-index: 2; 
-    pointer-events: none;
+    min-height: 100vh;
 }
 
 .hero-content {
-    position: relative;
-    z-index: 10; /* Level 10: High above all background elements */
-    max-width: 800px;
-    text-align: left;
+    max-width: 900px;
+    padding: 60px 40px;
+    text-align: center;
+    margin: 0 auto;
+    border-radius: 32px;
+    box-shadow: 0 20px 50px rgba(0, 0, 0, 0.2);
     
-    /* NEW: Professional Glassmorphism effect */
-    background: rgba(10, 10, 10, 0.4); /* Dark, 60% transparent */
-    backdrop-filter: blur(8px);       /* Blurs the circuits BEHIND the text */
-    -webkit-backdrop-filter: blur(8px); /* Safari support */
-    padding: 60px;
-    border-radius: 20px;
-    border: 1px solid rgba(255, 255, 255, 0.05); /* Subtle border for definition */
+    /* Theme Reactive Properties */
+    background: var(--hero-glass-bg) !important;
+    border: 1px solid var(--hero-border) !important;
+    
+    /* Consolidated Blur & GPU Acceleration */
+    backdrop-filter: blur(12px) !important;
+    -webkit-backdrop-filter: blur(12px);
+    transform: translateZ(0); 
+    
+    /* Optimized Transitions (merged duplicates) */
+    will-change: backdrop-filter, background-color, color; 
+    transition: background-color 0.1s linear, color 0.1s linear, border 0.15s ease !important;
 }
 
-/* Force the button to follow the text alignment */
-.hero-actions {
-    margin-top: 2rem;
-    pointer-events: auto;
+/* --- 3. TYPOGRAPHY & BUTTONS --- */
+.hero-content h1 {
+    font-family: 'Space Grotesk', sans-serif !important;
+    font-size: 3.5rem;
+    font-weight: 700;
+    line-height: 1.1;
+    margin-bottom: 20px;
+    color: var(--hero-title-text) !important;
+    transition: color 0.15s ease;
 }
 
-.hero-content * {
-    pointer-events: auto; /* Re-enables clicks for the button specifically */
+.hero-content p {
+    font-family: 'Space Grotesk', sans-serif !important;
+    font-size: 1.1rem;
+    line-height: 1.6;
+    max-width: 600px;
+    margin: 0 auto 30px auto;
+    letter-spacing: 0.5px;
+    font-weight: 500;
+    color: var(--hero-body-text) !important;
+    transition: color 0.15s ease;
 }
 
 .play-btn {
-    background: transparent;
-    color: var(--accent);
-    border: 1px solid var(--accent);
-    box-shadow: 0 0 15px rgba(0, 255, 65, 0.2);
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    padding: 12px 28px;
+    border-radius: 100px;
+    font-family: 'Space Grotesk', sans-serif;
+    font-weight: 700;
+    text-transform: uppercase;
+    cursor: pointer;
+    backdrop-filter: blur(10px);
+    
+    /* Initial Light Mode Styles */
+    color: #008f25 !important; 
+    border: 1px solid rgba(0, 143, 37, 0.5) !important;
+    background: rgba(0, 0, 0, 0.05) !important;
+    transition: all 0.2s ease;
+}
+
+[data-theme="dark"] .play-btn {
+    color: #00ff41 !important; 
+    border-color: rgba(0, 255, 65, 0.5) !important;
+    background: rgba(255, 255, 255, 0.05) !important;
 }
 
 .play-btn:hover {
-    background: var(--accent);
-    color: #000;
-    box-shadow: 0 0 30px var(--accent);
+    background: #00ff41 !important;
+    color: #000 !important;
+    box-shadow: 0 0 20px rgba(0, 255, 65, 0.4);
+    transform: translateY(-2px);
 }
 
+/* --- 4. SECTIONS & FOOTER --- */
 .section {
+    background: transparent !important;
     padding: 80px 10%;
 }
 
-/* Update/Replace the Navigation section in css/layout.css */
+footer {
+    background: transparent !important;
+    padding: 60px 10%;
+    text-align: center;
+    position: relative;
+    z-index: 2;
+}
+
+/* Applying "The Pod" logic to the footer container */
+.footer-content {
+    max-width: 900px;
+    margin: 0 auto;
+    padding: 40px;
+    border-radius: 24px;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+    
+    /* Theme Reactive Properties synced with Hero */
+    background: var(--hero-glass-bg) !important;
+    border: 1px solid var(--hero-border) !important;
+    
+    /* Consolidated Blur & GPU Acceleration */
+    backdrop-filter: blur(12px) !important;
+    -webkit-backdrop-filter: blur(12px);
+    transform: translateZ(0);
+    
+    /* Transitions for smooth mode switching */
+    will-change: backdrop-filter, background-color;
+    transition: background-color 0.1s linear, border 0.15s ease !important;
+}
+
+/* Footer Typography styling */
+.footer-content p {
+    color: var(--hero-body-text) !important;
+    font-family: 'Space Grotesk', sans-serif;
+    font-size: 0.9rem;
+    opacity: 0.8;
+}
+
+/* --- FLOATING DOCK (GLOBAL) --- */
 .floating-dock {
     position: fixed;
     bottom: 30px;
     left: 50%;
     transform: translateX(-50%);
-    z-index: 9999; /* Higher than hero content and mask */
-    width: auto;
+    z-index: 9999;
     display: flex;
     justify-content: center;
     pointer-events: auto;
@@ -100,48 +156,42 @@
 .dock-container {
     display: flex;
     align-items: center;
-    background: rgba(20, 20, 20, 0.8);
-    backdrop-filter: blur(15px);
-    -webkit-backdrop-filter: blur(15px); /* Safari support */
-    padding: 8px 16px;
+    gap: 12px;
+    padding: 10px 20px;
     border-radius: 24px;
-    border: 1px solid rgba(255, 255, 255, 0.1);
-    box-shadow: 0 10px 40px rgba(0, 0, 0, 0.5);
-    gap: 8px;
+    
+    /* Use the same glass variables as the Hero Pod */
+    background: var(--hero-glass-bg) !important;
+    border: 1px solid var(--hero-border) !important;
+    
+    /* Consolidated Blur */
+    backdrop-filter: blur(15px) !important;
+    -webkit-backdrop-filter: blur(15px);
+    
+    box-shadow: 0 10px 40px rgba(0, 0, 0, 0.3);
+    transition: all 0.2s ease;
 }
 
+/* --- DOCK ITEMS --- */
 .dock-item {
-    color: #888;
+    color: var(--hero-body-text); /* Syncs with your theme's body text */
+    text-decoration: none;
+    font-family: 'Space Grotesk', sans-serif;
+    font-size: 0.85rem;
+    font-weight: 600;
+    padding: 8px 12px;
+    border-radius: 12px;
+    transition: all 0.2s ease;
 }
 
 .dock-item:hover {
-    color: var(--accent) !important;
+    color: #00ff41 !important;
     background: rgba(0, 255, 65, 0.1);
+    transform: translateY(-2px);
 }
 
-.section-title {
-    font-family: 'Space Grotesk', sans-serif;
-    font-size: 0.75rem;
-    text-transform: uppercase;
-    letter-spacing: 4px;
-    color: var(--accent);
-    margin-bottom: 40px;
-    display: block;
-    border-left: 3px solid var(--accent);
-    padding-left: 15px;
-}
-
-
-footer {
-    padding: 100px 10% 150px 10%; 
-    background: #000; /* Match the hero background */
-    border-top: 1px solid rgba(0, 255, 65, 0.1); /* Subtle green border instead of grey */
-    text-align: center;
-}
-
-.footer-content p {
-    font-size: 1.1rem;
-    color: var(--text-secondary); /* Use the soft gray we defined for legibility */
-    opacity: 0.8;
-    margin-bottom: 30px;
+.dock-item.active {
+    background: rgba(0, 255, 65, 0.15);
+    color: #00ff41 !important;
+    border: 1px solid rgba(0, 255, 65, 0.3);
 }

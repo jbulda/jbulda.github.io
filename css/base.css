@@ -1,17 +1,82 @@
+/* base.css */
+
+/* Default - Light Mode */
 :root {
-    --bg: #050505;
+    --bg: #f8fafc;
+    --surface: #ffffff;
+    --accent: #00ff41;
+    --text-primary: #0f172a;
+    --text-secondary: #475569;
+    --glass-bg: rgba(255, 255, 255, 0.7);
+    --canvas-opacity: 0.15;
+    --btn-bg: rgba(255, 255, 255, 0.8);
+    --btn-border: rgba(0, 255, 65, 0.3);
+    --btn-text: #000;
+    --text-body: #475569;
+    --hero-glass-bg: rgba(255, 255, 255, 0.7);
+    --hero-border: rgba(0, 0, 0, 0.1);
+    --hero-body-text: #2d3436;
+    --hero-title-text: #1a1a1a;
+}
+
+/* Dark Mode Trigger */
+[data-theme="dark"] {
+    --bg: #000000;
     --surface: #121212;
     --accent: #00ff41;
-    --text-primary: #e0f2fe;    /* Very light "Ice Blue" - cuts the halation effect */
-    --text-secondary: #9ca3af;  /* Neutral "Cool Gray" - high contrast but soft */
-    --text-bright: #00ff41;     /* Use this only for tiny keywords/highlights */
-
+    --text-primary: #e0f2fe;
+    --text-secondary: #9ca3af;
+    --glass-bg: rgba(10, 10, 10, 0.4);
+    --canvas-opacity: 0.4;
+    --btn-bg: rgba(20, 20, 20, 0.4);
+    --btn-border: rgba(0, 255, 65, 0.6);
+    --btn-text: #00ff41;
+    --text-body: rgba(255, 255, 255, 0.8);
+    --hero-glass-bg: rgba(10, 10, 10, 0.5); /* Semi-transparent so circuits show through */
+    --hero-border: rgba(0, 255, 65, 0.2);
+    --hero-body-text: rgba(255, 255, 255, 0.8);
+    --hero-title-text: #ffffff;
+    
+    /* REMOVED: background and color rules from here that were breaking the pod */
 }
 
+/* --- THEME SPECIFIC BODY FIXES --- */
 body {
-    background-color: var(--bg);
-    color: var(--text);
+    background-color: #ffffff; /* Default light */
+    transition: background-color 0.3s ease;
+    margin: 0;
+    padding: 0;
 }
 
-h1, h2, h3 { font-family: 'Space Grotesk', sans-serif; }
-.accent { color: var(--accent); }
+[data-theme="dark"] body {
+    background-color: #000000 !important;
+}
+
+/* Lift the curtain: Ensure sections don't have solid backgrounds hiding the canvas */
+[data-theme="dark"] .hero, 
+[data-theme="dark"] section, 
+[data-theme="dark"] .main-content,
+[data-theme="dark"] footer {
+    background-color: transparent !important;
+    background-image: none !important;
+}
+
+/* --- BUTTON THEME OVERRIDES --- */
+[data-theme="light"] .play-btn {
+    color: #008f25 !important;
+    border-color: rgba(0, 143, 37, 0.5) !important;
+    background: rgba(0, 0, 0, 0.05) !important;
+}
+
+[data-theme="dark"] .play-btn {
+    color: var(--accent) !important;
+    border-color: var(--btn-border) !important;
+    background: var(--btn-bg) !important;
+}
+
+/* --- TYPOGRAPHY --- */
+h1, h2, h3, .section-title, .hero-content h1 {
+    font-family: 'Space Grotesk', sans-serif !important;
+    font-weight: 700;
+    letter-spacing: -1px;
+}

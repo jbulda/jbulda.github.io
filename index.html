@@ -31,22 +31,27 @@
             <a href="JericBulda_cv2026 (1).docx" class="dock-item" data-label="CV" download>
                 <span class="icon">📄</span>
             </a>
+            <div class="jumper-container" onclick="toggleTheme()">
+                <div class="jumper-track">
+                    <div class="pin"></div>
+                    <div class="pin"></div>
+                    <div class="jumper-block" id="jumperBlock"></div>
+                </div>
+                <span class="jumper-label">MODE_SEL</span>
+            </div>
         </div>
     </nav>
 
+    <canvas id="hero-canvas"></canvas>
     <section class="hero">
-        <canvas id="hero-canvas"></canvas>
-
         <div class="hero-content">
-            <h1 class="reveal-text">Engineering High-Fidelity <br><span class="accent">Enterprise Solutions.</span></h1>
-            <p class="fade-in">Senior SAP Fiori Developer with 8 years of expertise in BTP, UI5, and S/4HANA
-                Integration.</p>
-
+            <span class="hero-label">SAP FIORI DEVELOPER</span>
+            <h1>Engineering Mission-Critical <br> <span class="accent-text">Enterprise UX.</span></h1>
+            <p>Transforming complex maintenance workflows into high-fidelity Fiori applications built on SAP BTP.</p>
             <div class="hero-actions">
                 <button class="play-btn" onclick="boostParticles()">System Boost 🚀</button>
             </div>
         </div>
-        <div class="scroll-indicator"></div>
     </section>
 
     <section id="expertise" class="section">
