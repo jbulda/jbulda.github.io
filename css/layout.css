@@ -1,20 +1,26 @@
 .hero {
+    background: #000000 !important; /* This must be pure black */
     position: relative;
     height: 100vh;
     display: flex;
     align-items: center;
-    padding: 0 10%;
+    justify-content: center;
     overflow: hidden;
-    background: #000;
 }
 
 #hero-canvas {
     position: absolute;
     top: 0;
     left: 0;
-    z-index: 0; /* Level 0: The very bottom */
-    opacity: 0.8;
-    filter: none; /* Remove the grayscale from the previous version */
+    z-index: 1; /* Level 1: Canvas sits just above the black background */
+    opacity: 0.4;
+    filter: none;
+    animation: canvasPulse 10s infinite alternate;
+}
+
+@keyframes canvasPulse {
+    0% { opacity: 0.6; }
+    100% { opacity: 0.9; }
 }
 
 .hero::before {
@@ -24,21 +30,31 @@
     left: 0;
     right: 0;
     bottom: 0;
-    background: radial-gradient(circle, rgba(0, 0, 0, 0) 20%, rgba(0, 0, 0, 0.9) 100%);
-    z-index: 1; /* Level 1: Fades the canvas, but stays behind text */
+    
+    /* THE FIX: Fade from TRANSPARENT in the center to BLACK on the edges */
+    background: radial-gradient(
+        circle, 
+        rgba(0, 0, 0, 0) 20%,    /* The center stays clear so the neon is bright */
+        rgba(0, 0, 0, 0.9) 100%  /* The edges fade to deep black */
+    );
+    
+    z-index: 2; 
     pointer-events: none;
 }
 
 .hero-content {
     position: relative;
-    z-index: 10;
+    z-index: 10; /* Level 10: High above all background elements */
     max-width: 800px;
-    text-align: left; /* Or 'center' if you prefer a centered hero */
-    pointer-events: none;
-    background: rgba(5, 5, 5, 0.4);
-    backdrop-filter: blur(4px);
-    padding: 20px;
-    border-radius: 12px;
+    text-align: left;
+    
+    /* NEW: Professional Glassmorphism effect */
+    background: rgba(10, 10, 10, 0.4); /* Dark, 60% transparent */
+    backdrop-filter: blur(8px);       /* Blurs the circuits BEHIND the text */
+    -webkit-backdrop-filter: blur(8px); /* Safari support */
+    padding: 60px;
+    border-radius: 20px;
+    border: 1px solid rgba(255, 255, 255, 0.05); /* Subtle border for definition */
 }
 
 /* Force the button to follow the text alignment */
