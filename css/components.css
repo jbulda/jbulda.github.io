@@ -486,3 +486,52 @@
 [data-theme="dark"] #jumperBlock {
     transform: translateX(14px);
 }
+
+/* components.css */
+
+.terminal-link {
+    display: inline-flex;
+    align-items: center;
+    gap: 12px;
+    padding: 12px 24px;
+    background: rgba(0, 255, 65, 0.05); /* Very subtle tint */
+    color: var(--accent) !important;
+    text-decoration: none;
+    font-family: 'Space Grotesk', sans-serif;
+    font-size: 0.75rem;
+    font-weight: 700;
+    letter-spacing: 2px;
+    border: 1px solid var(--accent-glow);
+    border-radius: 4px;
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    width: fit-content;
+}
+
+.terminal-link:hover {
+    background: var(--accent);
+    color: #000 !important;
+    box-shadow: 0 0 20px var(--accent-glow);
+    transform: translateX(5px);
+    border-color: var(--accent);
+}
+
+.terminal-link .arrow {
+    opacity: 0.6;
+    font-weight: bold;
+}
+
+.terminal-link:hover .arrow {
+    opacity: 1;
+    animation: blink 0.8s infinite;
+}
+
+@keyframes blink {
+    50% { opacity: 0; }
+}
+
+/* Ensure the description isn't too dark */
+.project-desc {
+    color: var(--text-secondary);
+    font-size: 1rem;
+    line-height: 1.5;
+}
